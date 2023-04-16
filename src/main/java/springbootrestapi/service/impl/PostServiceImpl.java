@@ -1,10 +1,14 @@
 package springbootrestapi.service.impl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import springbootrestapi.entity.Post;
 import springbootrestapi.exception.ResourceNotFoundException;
 import springbootrestapi.payload.PostDto;
 import springbootrestapi.repository.PostRepository;
 import springbootrestapi.service.PostService;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +32,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost() {
-        List<Post> posts = postRepository.findAll();
-        return posts.stream().map(post -> mapToDto(post)).collect(Collectors.toList());
+    public List<PostDto> getAllPost(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+        Page<Post> posts = postRepository.findAll(pageable);
+        List<Post> listOfPosts = posts.getContent();
+        return listOfPosts.stream().map(post -> mapToDto(post)).collect(Collectors.toList());
     }
 
     @Override
