@@ -3,6 +3,7 @@ package springbootrestapi.payload;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import springbootrestapi.entity.Comment;
 
 @Data
 @NoArgsConstructor
