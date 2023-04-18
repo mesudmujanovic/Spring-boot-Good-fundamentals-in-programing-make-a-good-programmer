@@ -8,7 +8,6 @@ import springbootrestapi.exception.ResourceNotFoundException;
 import springbootrestapi.payload.PostDto;
 import springbootrestapi.repository.PostRepository;
 import springbootrestapi.service.PostService;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,7 +60,6 @@ public class PostServiceImpl implements PostService {
         postRepository.delete(post);
     }
 
-
     private PostDto mapToDto(Post post){
         PostDto postDto = new PostDto();
         // Entity into DTO
@@ -79,7 +77,4 @@ public class PostServiceImpl implements PostService {
         post.setDescription(postDto.getDescription());
         return  post;
     }
-
-
-
 }
